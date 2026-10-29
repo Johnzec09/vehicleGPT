@@ -4,7 +4,7 @@
 > **Case Study 5 — Technical Competition**  
 > **Team SANJO:** K. John Zechariah & B. Rohan  
 > **Tagline:** *"Your Car's Data. In Your Language."*  
-> **Live Demo:** [https://fairy-arena-drove-collectibles.trycloudflare.com](https://fairy-arena-drove-collectibles.trycloudflare.com)
+> **Live Demo:** [https://vehiclegpt-zohn.vercel.app](https://vehiclegpt-zohn.vercel.app)
 
 ---
 
