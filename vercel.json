@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://fairy-arena-drove-collectibles.trycloudflare.com/api/$1"
+      "destination": "https://placed-simpson-please-implemented.trycloudflare.com/api/$1"
     },
     {
       "source": "/(.*)",
