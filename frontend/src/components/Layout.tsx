@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   LayoutDashboard,
   Gauge,
@@ -12,7 +12,9 @@ import {
   X,
   Radio,
   HardDriveDownload,
-  Info
+  Info,
+  Sun,
+  Moon
 } from "lucide-react";
 import { SimulatorStatus, SystemHealth } from "../types/vehicle";
 
@@ -32,6 +34,18 @@ export const Layout: React.FC<LayoutProps> = ({
   children
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    return (localStorage.getItem("theme") as "light" | "dark") || "light";
+  });
+
+  useEffect(() => {
+    if (theme === "light") {
+      document.body.classList.add("light-mode");
+    } else {
+      document.body.classList.remove("light-mode");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const navItems = [
     { id: "overview", label: "Overview Dashboard", icon: LayoutDashboard },
@@ -62,12 +76,21 @@ export const Layout: React.FC<LayoutProps> = ({
             <div className="text-[10px] text-cyan-400 font-semibold">Team SANJO — Case Study 5</div>
           </div>
         </div>
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
-        >
-          {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+            className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
+            title="Toggle Light / Dark Mode"
+          >
+            {theme === "light" ? <Sun className="w-5 h-5 text-amber-500" /> : <Moon className="w-5 h-5 text-cyan-400" />}
+          </button>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white"
+          >
+            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Sidebar Navigation */}
@@ -198,6 +221,26 @@ export const Layout: React.FC<LayoutProps> = ({
               <span className="w-2 h-2 rounded-full bg-cyan-400" />
               <span className="text-slate-300 font-medium">No Cloud Dependency</span>
             </div>
+
+            <div className="h-4 w-[1px] bg-slate-700" />
+
+            <button
+              onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors"
+              title="Toggle Light / Dark Mode"
+            >
+              {theme === "light" ? (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-500" />
+                  <span className="font-semibold text-slate-800">Light</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="font-semibold text-slate-200">Dark</span>
+                </>
+              )}
+            </button>
           </div>
         </header>
 

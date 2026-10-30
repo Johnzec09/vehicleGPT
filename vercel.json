@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "https://placed-simpson-please-implemented.trycloudflare.com/api/$1"
+      "destination": "https://very-cage-story-flood.trycloudflare.com/api/$1"
     },
     {
       "source": "/(.*)",
